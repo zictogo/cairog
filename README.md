@@ -9,18 +9,9 @@ source env.sh
 guile
 ```
 
-```scheme
-(use-modules (system foreign) (cairog core))
-(pointer->string (cairo-version-string))
-```
-
 ## Documentation
 
-```bash
-docker compose up -d
-```
-
-Available at [http://localhost:8080](http://localhost:8080).
+Available at [https://zictogo.github.io/cairog/](https://zictogo.github.io/cairog/).
 
 ## Tests
 
