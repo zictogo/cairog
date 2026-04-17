@@ -5,9 +5,7 @@ The `context` module wraps `cairo_t`, the central object of Cairo. Every drawing
 See the [Cairo drawing documentation](https://www.cairographics.org/manual/cairo-cairo-t.html) for the full C API reference.
 
 ```scheme
-(use-modules (cairog types)
-             (cairog surface)
-             (cairog context))
+(use-modules (cairog))
 ```
 
 ## Lifecycle

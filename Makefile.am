@@ -17,6 +17,7 @@ SUFFIXES = .scm .go
 	  $(GUILE_TARGET) -o "$@" "$<"
 
 SOURCES = \
+  cairog.scm         \
   cairog/core.scm    \
   cairog/types.scm   \
   cairog/surface.scm \
@@ -33,10 +34,5 @@ check: $(GOBJECTS)
 		echo "  $$f"; \
 		$(top_builddir)/pre-inst-env $(GUILE) $$f || exit 1; \
 	done
-
-EXTRA_DIST = \
-  README.md  \
-  env.sh     \
-  $(TEST_FILES)
 
 CLEANFILES = $(GOBJECTS)

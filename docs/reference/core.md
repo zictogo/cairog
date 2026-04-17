@@ -3,7 +3,7 @@
 The `core` module loads `libcairo` and provides low-level FFI bindings.
 
 ```scheme
-(use-modules (cairog core))
+(use-modules (cairog))
 ```
 
 ## Variables

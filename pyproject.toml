@@ -3,7 +3,7 @@ package = false
 
 [project]
 name = "cairog"
-description = "Cairo binding for Guile"
+description = "Cairo binding for GNU Guile"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

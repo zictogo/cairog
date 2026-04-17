@@ -12,7 +12,7 @@ guix package -f guix.scm
 
 ```bash
 guix shell -f guix.scm   # shell with all dependencies
-source env.sh             # add source tree to GUILE_LOAD_PATH
+./bootstrap && ./configure && make   # build in-tree
 ```
 
 ## Tests

@@ -5,8 +5,7 @@ The `surface` module creates and manages Cairo surfaces. A surface is the destin
 See the [Cairo surface documentation](https://www.cairographics.org/manual/cairo-cairo-surface-t.html) for the full C API reference.
 
 ```scheme
-(use-modules (cairog types)
-             (cairog surface))
+(use-modules (cairog))
 ```
 
 ## Procedures
@@ -15,7 +14,7 @@ See the [Cairo surface documentation](https://www.cairographics.org/manual/cairo
 
 Corresponds to [`cairo_image_surface_create`](https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-create).
 
-Creates an in-memory image surface of the given pixel format and dimensions. `format` is one of the `CAIRO-FORMAT-*` constants defined in `(cairog types)`.
+Creates an in-memory image surface of the given pixel format and dimensions. `format` is one of the `CAIRO-FORMAT-*` constants (see the table below).
 
 ```scheme
 (cairo-image-surface-create CAIRO-FORMAT-ARGB32 800 600)

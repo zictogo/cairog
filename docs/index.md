@@ -15,22 +15,20 @@ guix package -f guix.scm
 After installation the modules are available with no extra configuration:
 
 ```scheme
-(use-modules (cairog surface) (cairog context))
+(use-modules (cairog))
 ```
 
 ## Development
 
 ```bash
-guix shell -f guix.scm   # shell with all dependencies
-source env.sh             # add the source tree to GUILE_LOAD_PATH
+guix shell -f guix.scm               # shell with all dependencies
+./bootstrap && ./configure && make   # build in-tree
 ```
 
 ## Quick example
 
 ```scheme
-(use-modules (cairog types)
-             (cairog surface)
-             (cairog context))
+(use-modules (cairog))
 
 (let* ((surface (cairo-image-surface-create CAIRO-FORMAT-ARGB32 256 256))
        (cr      (cairo-create surface)))

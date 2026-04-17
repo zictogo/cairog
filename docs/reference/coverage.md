@@ -4,13 +4,19 @@ This page lists Cairo API groups and their current availability in Cairog.
 
 The full Cairo C API reference is at <https://www.cairographics.org/manual/>.
 
+All available bindings are accessible via the single top-level module:
+
+```scheme
+(use-modules (cairog))
+```
+
 ## Available
 
-| Module | Scheme module | Cairo API group |
-|---|---|---|
-| Core | `(cairog core)` | [Version information](https://www.cairographics.org/manual/cairo-Version-Information.html) |
-| Surface | `(cairog surface)` | [Image surfaces](https://www.cairographics.org/manual/cairo-Image-Surfaces.html), [PNG support](https://www.cairographics.org/manual/cairo-PNG-Support.html), [surface lifecycle](https://www.cairographics.org/manual/cairo-cairo-surface-t.html) (create/destroy/status) |
-| Context | `(cairog context)` | [Drawing context](https://www.cairographics.org/manual/cairo-cairo-t.html) (lifecycle, save/restore, source, operator, line width), [paint/fill/stroke verbs](https://www.cairographics.org/manual/cairo-cairo-t.html), [path construction](https://www.cairographics.org/manual/cairo-Paths.html) (move-to, line-to, rectangle, arc, close-path) |
+| Module | Cairo API group |
+|---|---|
+| Core | [Version information](https://www.cairographics.org/manual/cairo-Version-Information.html) |
+| Surface | [Image surfaces](https://www.cairographics.org/manual/cairo-Image-Surfaces.html), [PNG support](https://www.cairographics.org/manual/cairo-PNG-Support.html), [surface lifecycle](https://www.cairographics.org/manual/cairo-cairo-surface-t.html) (create/destroy/status) |
+| Context | [Drawing context](https://www.cairographics.org/manual/cairo-cairo-t.html) (lifecycle, save/restore, source, operator, line width), [paint/fill/stroke verbs](https://www.cairographics.org/manual/cairo-cairo-t.html), [path construction](https://www.cairographics.org/manual/cairo-Paths.html) (move-to, line-to, rectangle, arc, close-path) |
 
 ## Not yet available
 

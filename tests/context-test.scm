@@ -1,7 +1,5 @@
 (use-modules (srfi srfi-64)
-             (cairog types)
-             (cairog surface)
-             (cairog context))
+             (cairog))
 
 (test-begin "cairog-context")
 

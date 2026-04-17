@@ -1,6 +1,6 @@
 (use-modules (srfi srfi-64)
              (system foreign)
-             (cairog core))
+             (cairog))
 
 (test-begin "cairog-core")
 
