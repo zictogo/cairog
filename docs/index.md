@@ -4,18 +4,26 @@ Cairog is a Cairo binding for GNU Guile. It exposes the [Cairo](https://www.cair
 
 ## Requirements
 
-- GNU Guile 3.0+
-- libcairo (e.g. `libcairo2-dev` on Debian/Ubuntu, `cairo-devel` on Fedora)
+- [GNU Guix](https://guix.gnu.org/)
 
 ## Installation
 
 ```bash
-git clone https://github.com/zictogo/cairog.git
-cd cairog
-source env.sh
+guix package -f guix.scm
 ```
 
-`env.sh` sets `GUILE_LOAD_PATH` to the project root so modules are resolvable without any extra flags.
+After installation the modules are available with no extra configuration:
+
+```scheme
+(use-modules (cairog surface) (cairog context))
+```
+
+## Development
+
+```bash
+guix shell -f guix.scm   # shell with all dependencies
+source env.sh             # add the source tree to GUILE_LOAD_PATH
+```
 
 ## Quick example
 
@@ -44,7 +52,7 @@ source env.sh
 ## Running the tests
 
 ```bash
-make test
+make check
 ```
 
 ## Reference

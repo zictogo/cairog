@@ -1,3 +1,4 @@
+*~
 *.ss~
 *.ss#*
 .#*.ss
@@ -7,5 +8,21 @@
 .#*.scm
 
 *.log
+*.trs
 
-cairo/
+# Autotools generated files
+/Makefile
+/Makefile.in
+/configure
+/config.status
+/config.log
+/INSTALL
+/aclocal.m4
+/stamp-h1
+/test-suite.log
+/pre-inst-env
+build-aux/
+autom4te.cache/
+
+# Compiled Guile objects (build artefacts)
+cairog/*.go

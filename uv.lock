@@ -4,8 +4,6 @@ requires-python = ">=3.13"
 
 [[package]]
 name = "cairog"
-version = "0.1.0"
-source = { virtual = "." }
 dependencies = [
     { name = "zensical" },
 ]
