@@ -52,6 +52,7 @@ This manual is for Cairog version @value{VERSION}.
 * Surface::             Surface creation and PNG export.
 * Context::             Drawing context and path operations.
 * API Coverage::        Which Cairo API groups are available.
+* Usage::               Getting Cairog.
 @end menu
 @end ifnottex
 
@@ -61,5 +62,6 @@ This manual is for Cairog version @value{VERSION}.
 @include surface.texi
 @include context.texi
 @include api-coverage.texi
+@include usage.texi
 
 @bye

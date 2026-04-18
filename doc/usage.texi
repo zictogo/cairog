@@ -1,0 +1,70 @@
+@node Usage
+@chapter Getting Cairog
+
+Cairog can be obtained in two ways depending on your use case.
+
+@menu
+* Direct Installation::   Install from source without a channel.
+* Via Guix Channel::      Install and use cairog as a Guix dependency.
+@end menu
+
+@node Direct Installation
+@section Direct Installation
+
+If you have a local checkout of the cairog source, you can install it
+directly into your Guix profile without any channel setup:
+
+@example
+guix package -f guix.scm
+@end example
+
+After installation the modules are available with no extra configuration:
+
+@example
+(use-modules (cairog))
+@end example
+
+@node Via Guix Channel
+@section Via Guix Channel
+
+The cairog Guix channel allows you to install cairog and declare it as
+a dependency in your own Guix projects without a local checkout.
+
+@subsection Adding the channel
+
+Add the following to @file{~/.config/guix/channels.scm}:
+
+@example
+(cons* (channel
+         (name 'cairog)
+         (url "https://github.com/zictogo/cairog-channel"))
+       %default-channels)
+@end example
+
+Then synchronise:
+
+@example
+guix pull
+@end example
+
+@subsection Installing cairog
+
+@example
+guix install cairog
+@end example
+
+@subsection Declaring cairog as a dependency
+
+In your project's @file{guix.scm}:
+
+@example
+(use-modules (cairog packages)
+             (guix packages)
+             (guix build-system gnu)
+             (gnu packages guile))
+
+(package
+  (name "my-project")
+  ...
+  (inputs (list cairog guile-3.0)))
+@end example
