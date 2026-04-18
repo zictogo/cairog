@@ -25,16 +25,19 @@ SOURCES = \
   cairog/surface.scm \
   cairog/context.scm
 
-TEST_FILES = \
+TESTS = \
   tests/core-test.scm    \
   tests/surface-test.scm \
   tests/context-test.scm
 
-.PHONY: check
-check: $(GOBJECTS)
-	@for f in $(TEST_FILES); do \
-		echo "  $$f"; \
-		$(top_builddir)/pre-inst-env $(GUILE) $$f || exit 1; \
-	done
+LOG_COMPILER = $(top_builddir)/pre-inst-env $(GUILE)
 
 CLEANFILES = $(GOBJECTS)
+
+MAINTAINERCLEANFILES = \
+  configure   \
+  Makefile.in \
+  aclocal.m4
+
+maintainer-clean-local:
+	rm -rf build-aux
