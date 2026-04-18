@@ -7,8 +7,9 @@ Documentation available at <https://zictogo.github.io/cairog/>.
 
 ```bash
 guix package -f guix.scm
-info cairog
 ```
+
+After installation, the manual is available with `info cairog`.
 
 ## Development
 
@@ -16,6 +17,7 @@ info cairog
 guix shell -D -f guix.scm               # development shell with all build inputs
 ./bootstrap && ./configure && make      # build in-tree
 info -f doc/cairog.info                 # browse the manual without installing
+./pre-inst-env guile <script.scm>       # run a script against the in-tree build
 ```
 
 ## Tests
