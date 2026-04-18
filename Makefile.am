@@ -34,6 +34,9 @@ LOG_COMPILER = $(top_builddir)/pre-inst-env $(GUILE)
 
 CLEANFILES = $(GOBJECTS)
 
+clean-local:
+	rm -f cairog-*.log
+
 MAINTAINERCLEANFILES = \
   configure   \
   Makefile.in \

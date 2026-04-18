@@ -1,33 +1,63 @@
 @node Installation
 @chapter Installation
 
-@section Requirements
+Cairog requires @uref{https://guix.gnu.org/, GNU Guix}.
 
-@itemize
-@item @uref{https://guix.gnu.org/, GNU Guix}
-@end itemize
+@menu
+* From Source::          Install directly from a local checkout.
+* Via Guix Channel::     Install via the cairog channel.
+* As a Dependency::      Declare cairog in your own Guix project.
+@end menu
 
-@section Installing with Guix
+@node From Source
+@section From Source
+
+Clone the repository and install into your Guix profile:
 
 @example
-guix package -f guix.scm
+git clone https://github.com/zictogo/cairog
+guix package -f cairog/guix.scm
 @end example
 
-After installation the modules are available with no extra configuration:
+@node Via Guix Channel
+@section Via Guix Channel
+
+Add the cairog channel to @file{~/.config/guix/channels.scm}:
+
+@example
+(cons* (channel
+         (name 'cairog)
+         (url "https://github.com/zictogo/cairog-channel"))
+       %default-channels)
+@end example
+
+Then:
+
+@example
+guix pull
+guix install cairog
+@end example
+
+@node As a Dependency
+@section As a Dependency
+
+After enabling the channel (@pxref{Via Guix Channel}), declare cairog
+in your project's @file{guix.scm}:
+
+@example
+(use-modules (cairog packages)
+             (guix packages)
+             (guix build-system gnu)
+             (gnu packages guile))
+
+(package
+  (name "my-project")
+  ...
+  (inputs (list cairog guile-3.0)))
+@end example
+
+In both cases the modules are available with no extra configuration:
 
 @example
 (use-modules (cairog))
-@end example
-
-@section Development shell
-
-@example
-guix shell -D -f guix.scm
-./bootstrap && ./configure && make
-@end example
-
-@section Running the tests
-
-@example
-make check
 @end example
