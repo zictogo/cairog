@@ -25,4 +25,4 @@ build-aux/
 autom4te.cache/
 
 # Compiled Guile objects (build artefacts)
-cairog/*.go
+*.go

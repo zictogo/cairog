@@ -1,8 +1,10 @@
-(use-modules (guix packages)
+(use-modules (ice-9 rdelim)
+             (guix gexp)
+             (guix packages)
              (guix git-download)
              (guix build-system gnu)
              (gnu packages guile)
-             (gnu packages cairo)
+             (gnu packages gtk)
              (gnu packages pkg-config)
              (gnu packages autotools)
              ((guix licenses) #:prefix license:))
@@ -21,10 +23,14 @@
                       #:select? (git-predicate ".")))
   (build-system gnu-build-system)
   (arguments
-   '(#:phases
+   `(#:phases
      (modify-phases %standard-phases
        (add-before 'configure 'bootstrap
-         (lambda _ (invoke "sh" "bootstrap"))))))
+         (lambda _ (invoke "sh" "bootstrap")))
+       (add-before 'build 'set-library-path
+         (lambda* (#:key inputs #:allow-other-keys)
+           (setenv "LD_LIBRARY_PATH"
+                   (string-append (assoc-ref inputs "cairo") "/lib")))))))
   (inputs (list guile-3.0 cairo))
   (native-inputs (list autoconf automake pkg-config))
   (synopsis "Cairo 2D graphics binding for GNU Guile")
