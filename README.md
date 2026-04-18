@@ -21,7 +21,7 @@ info -f doc/cairog.info                 # browse the manual without installing
 ## Tests
 
 ```bash
-make check                              # on failure, check test-suite.log or tests/<name>.log
+make check    # on failure, check test-suite.log or tests/<name>.log
 ```
 
 ## Cleaning
