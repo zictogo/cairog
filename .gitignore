@@ -26,3 +26,9 @@ autom4te.cache/
 
 # Compiled Guile objects (build artefacts)
 *.go
+
+# Texinfo generated files
+doc/version.texi
+doc/*.info
+doc/*.html
+doc/*.pdf

@@ -1,0 +1,33 @@
+@node Core
+@chapter Core Module
+
+The core module loads @code{libcairo} via Guile's FFI and provides
+version query procedures.
+
+@example
+(use-modules (cairog))
+@end example
+
+@deffn Variable libcairo
+The dynamic library handle returned by @code{(dynamic-link "libcairo")}.
+Use it to look up additional Cairo symbols via @code{dynamic-func} when
+building higher-level bindings.
+@end deffn
+
+@deffn Procedure cairo-version
+Returns the Cairo library version as an encoded integer
+@math{major * 10000 + minor * 100 + micro}.
+
+@example
+(cairo-version)  @result{} 11802   ; meaning 1.18.2
+@end example
+@end deffn
+
+@deffn Procedure cairo-version-string
+Returns a pointer to a C string containing the Cairo version.
+Convert it with @code{pointer->string}:
+
+@example
+(pointer->string (cairo-version-string))  @result{} "1.18.2"
+@end example
+@end deffn

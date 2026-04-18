@@ -15,15 +15,31 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Install texinfo
+        run: sudo apt-get install -y texinfo
+
+      - name: Generate version.texi
+        run: |
+          VERSION=$(cat VERSION)
+          UPDATED=$(date "+%e %B %Y" | sed 's/^ //')
+          UPDATED_MONTH=$(date "+%B %Y")
+          printf '@set VERSION %s\n@set UPDATED %s\n@set UPDATED-MONTH %s\n@set EDITION %s\n' \
+            "$VERSION" "$UPDATED" "$UPDATED_MONTH" "$VERSION" \
+            > doc/version.texi
+
+      - name: Build HTML manual
+        run: |
+          mkdir -p site
+          makeinfo --html --no-split --css-ref=https://www.gnu.org/software/gnulib/manual.css \
+            -o site/index.html doc/cairog.texi
+
       - uses: actions/configure-pages@v5
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-      - run: pip install zensical
-      - run: zensical build --clean 
-      - uses: actions/upload-pages-artifact@v4
+
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
       - uses: actions/deploy-pages@v4
         id: deployment

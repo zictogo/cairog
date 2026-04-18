@@ -1,3 +1,5 @@
+info_TEXINFOS = doc/cairog.texi
+
 nodist_noinst_SCRIPTS = pre-inst-env
 
 GOBJECTS = $(SOURCES:%.scm=%.go)

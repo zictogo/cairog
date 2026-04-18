@@ -1,0 +1,94 @@
+@node Surface
+@chapter Surface Module
+
+A surface is the destination for drawing operations — in this binding,
+in-memory bitmap images that can be exported to PNG.
+
+Full C API reference:
+@uref{https://www.cairographics.org/manual/cairo-cairo-surface-t.html}.
+
+@example
+(use-modules (cairog))
+@end example
+
+@menu
+* Surface Procedures::
+* Surface Format Constants::
+@end menu
+
+@node Surface Procedures
+@section Procedures
+
+@deffn Procedure cairo-image-surface-create format width height
+Creates an in-memory image surface of the given pixel format and
+dimensions.  @var{format} is one of the @code{CAIRO-FORMAT-*} constants
+(@pxref{Surface Format Constants}).
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-create,
+cairo_image_surface_create}.
+
+@example
+(cairo-image-surface-create CAIRO-FORMAT-ARGB32 800 600)
+@end example
+@end deffn
+
+@deffn Procedure cairo-surface-destroy surface
+Decrements the reference count on @var{surface}.  The surface is freed
+when the count reaches zero.  Call this once you are done drawing.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-destroy,
+cairo_surface_destroy}.
+@end deffn
+
+@deffn Procedure cairo-surface-status surface
+Returns the current error status of @var{surface} as one of the
+@code{CAIRO-STATUS-*} integers.  A healthy surface returns
+@code{CAIRO-STATUS-SUCCESS} (0).
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-status,
+cairo_surface_status}.
+@end deffn
+
+@deffn Procedure cairo-surface-write-to-png surface filename
+Writes the surface contents to a PNG file at @var{filename}.  Returns a
+@code{CAIRO-STATUS-*} integer; @code{CAIRO-STATUS-SUCCESS} on success.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-PNG-Support.html#cairo-surface-write-to-png,
+cairo_surface_write_to_png}.
+
+@example
+(cairo-surface-write-to-png surface "/tmp/output.png")
+@end example
+@end deffn
+
+@node Surface Format Constants
+@section Format Constants
+
+Pixel formats for @code{cairo-image-surface-create}, from
+@uref{https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-format-t,
+cairo_format_t}:
+
+@table @code
+@item CAIRO-FORMAT-ARGB32
+32-bit ARGB with pre-multiplied alpha.
+@item CAIRO-FORMAT-RGB24
+32-bit RGB, no alpha.
+@item CAIRO-FORMAT-A8
+8-bit alpha channel only.
+@item CAIRO-FORMAT-A1
+1-bit alpha channel only.
+@item CAIRO-FORMAT-RGB16-565
+16-bit RGB.
+@item CAIRO-FORMAT-RGB30
+30-bit RGB.
+@item CAIRO-FORMAT-RGB96F
+96-bit RGB, floating-point.
+@item CAIRO-FORMAT-RGBA128F
+128-bit RGBA, floating-point.
+@item CAIRO-FORMAT-INVALID
+Invalid format (error sentinel).
+@end table

@@ -1,0 +1,220 @@
+@node Context
+@chapter Context Module
+
+The context module wraps @code{cairo_t}, the central object of Cairo.
+Every drawing operation goes through a context bound to a surface.
+
+Full C API reference:
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html}.
+
+@example
+(use-modules (cairog))
+@end example
+
+@menu
+* Context Lifecycle::
+* Source::
+* State::
+* Drawing Verbs::
+* Path Construction::
+* Operator Constants::
+@end menu
+
+@node Context Lifecycle
+@section Lifecycle
+
+@deffn Procedure cairo-create surface
+Creates a new drawing context targeting @var{surface}.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-create,
+cairo_create}.
+@end deffn
+
+@deffn Procedure cairo-destroy cr
+Decrements the context reference count and frees it when it reaches
+zero.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-destroy,
+cairo_destroy}.
+@end deffn
+
+@deffn Procedure cairo-status cr
+Returns the current error state as a @code{CAIRO-STATUS-*} integer.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-status,
+cairo_status}.
+@end deffn
+
+@deffn Procedure cairo-save cr
+@deffnx Procedure cairo-restore cr
+Push/pop the full graphics state (source, line width, operator, clip,
+etc.) onto a stack.  Use @code{cairo-save} before temporary style
+changes and @code{cairo-restore} to undo them.
+@end deffn
+
+@node Source
+@section Source
+
+@deffn Procedure cairo-set-source-rgb cr r g b
+Sets an opaque solid colour.  @var{r}, @var{g}, @var{b} are doubles in
+@math{[0.0, 1.0]}.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-source-rgb,
+cairo_set_source_rgb}.
+@end deffn
+
+@deffn Procedure cairo-set-source-rgba cr r g b a
+Sets a solid colour with alpha.  @var{a} is a double in
+@math{[0.0, 1.0]} where 1.0 is fully opaque.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-source-rgba,
+cairo_set_source_rgba}.
+@end deffn
+
+@node State
+@section State
+
+@deffn Procedure cairo-set-line-width cr width
+Sets the stroke line width in user-space units.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-line-width,
+cairo_set_line_width}.
+@end deffn
+
+@deffn Procedure cairo-set-operator cr op
+Sets the compositing operator.  @var{op} is one of the
+@code{CAIRO-OPERATOR-*} constants (@pxref{Operator Constants}).
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-operator,
+cairo_set_operator}.
+@end deffn
+
+@node Drawing Verbs
+@section Drawing Verbs
+
+@deffn Procedure cairo-paint cr
+Fills the entire clip region with the current source.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-paint,
+cairo_paint}.
+@end deffn
+
+@deffn Procedure cairo-paint-with-alpha cr alpha
+Like @code{cairo-paint} but modulates the source with @var{alpha}
+(double in @math{[0.0, 1.0]}).
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-paint-with-alpha,
+cairo_paint_with_alpha}.
+@end deffn
+
+@deffn Procedure cairo-fill cr
+@deffnx Procedure cairo-fill-preserve cr
+Fill the current path with the source.  @code{cairo-fill} clears the
+path afterwards; @code{cairo-fill-preserve} keeps it for further
+operations (e.g.@: a subsequent stroke).
+@end deffn
+
+@deffn Procedure cairo-stroke cr
+@deffnx Procedure cairo-stroke-preserve cr
+Stroke the current path outline using the current line width and source.
+@code{cairo-stroke-preserve} keeps the path.
+@end deffn
+
+@node Path Construction
+@section Path Construction
+
+@deffn Procedure cairo-move-to cr x y
+@deffnx Procedure cairo-rel-move-to cr dx dy
+Move the current point to @math{(x, y)} (absolute) or offset by
+@math{(dx, dy)} (relative), starting a new sub-path.
+@end deffn
+
+@deffn Procedure cairo-line-to cr x y
+@deffnx Procedure cairo-rel-line-to cr dx dy
+Add a straight-line segment to @math{(x, y)} (absolute) or offset by
+@math{(dx, dy)} (relative).
+@end deffn
+
+@deffn Procedure cairo-rectangle cr x y width height
+Add a closed rectangular sub-path at @math{(x, y)} with the given
+@var{width} and @var{height}.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-Paths.html#cairo-rectangle,
+cairo_rectangle}.
+@end deffn
+
+@deffn Procedure cairo-arc cr xc yc radius angle1 angle2
+Add a circular arc centred at @math{(xc, yc)} with @var{radius}, from
+@var{angle1} to @var{angle2} in radians, going clockwise.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-Paths.html#cairo-arc,
+cairo_arc}.
+@end deffn
+
+@deffn Procedure cairo-arc-negative cr xc yc radius angle1 angle2
+Like @code{cairo-arc} but goes counter-clockwise.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-Paths.html#cairo-arc-negative,
+cairo_arc_negative}.
+@end deffn
+
+@deffn Procedure cairo-close-path cr
+Close the current sub-path by drawing a straight line back to its
+starting point.
+
+Corresponds to
+@uref{https://www.cairographics.org/manual/cairo-Paths.html#cairo-close-path,
+cairo_close_path}.
+@end deffn
+
+@node Operator Constants
+@section Operator Constants
+
+Used with @code{cairo-set-operator}.  From
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t,
+cairo_operator_t}:
+
+@table @code
+@item CAIRO-OPERATOR-CLEAR
+@item CAIRO-OPERATOR-SOURCE
+@item CAIRO-OPERATOR-OVER
+Default operator.
+@item CAIRO-OPERATOR-IN
+@item CAIRO-OPERATOR-OUT
+@item CAIRO-OPERATOR-ATOP
+@item CAIRO-OPERATOR-DEST
+@item CAIRO-OPERATOR-DEST-OVER
+@item CAIRO-OPERATOR-DEST-IN
+@item CAIRO-OPERATOR-DEST-OUT
+@item CAIRO-OPERATOR-DEST-ATOP
+@item CAIRO-OPERATOR-XOR
+@item CAIRO-OPERATOR-ADD
+@item CAIRO-OPERATOR-SATURATE
+@item CAIRO-OPERATOR-MULTIPLY
+@item CAIRO-OPERATOR-SCREEN
+@item CAIRO-OPERATOR-OVERLAY
+@item CAIRO-OPERATOR-DARKEN
+@item CAIRO-OPERATOR-LIGHTEN
+@item CAIRO-OPERATOR-COLOR-DODGE
+@item CAIRO-OPERATOR-COLOR-BURN
+@item CAIRO-OPERATOR-HARD-LIGHT
+@item CAIRO-OPERATOR-SOFT-LIGHT
+@item CAIRO-OPERATOR-DIFFERENCE
+@item CAIRO-OPERATOR-EXCLUSION
+@item CAIRO-OPERATOR-HSL-HUE
+@item CAIRO-OPERATOR-HSL-SATURATION
+@item CAIRO-OPERATOR-HSL-COLOR
+@item CAIRO-OPERATOR-HSL-LUMINOSITY
+@end table

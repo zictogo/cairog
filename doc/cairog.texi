@@ -1,0 +1,66 @@
+\input texinfo
+@c -*- texinfo -*-
+@setfilename cairog.info
+@settitle Cairog @value{VERSION}
+@documentencoding UTF-8
+@documentlanguage en
+
+@include version.texi
+
+@copying
+Copyright @copyright{} 2026 the Cairog authors.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is available at
+@uref{https://www.gnu.org/licenses/fdl.html}.
+@end quotation
+@end copying
+
+@dircategory Guile modules
+@direntry
+* Cairog: (cairog).     Cairo 2D graphics binding for GNU Guile.
+@end direntry
+
+@titlepage
+@title Cairog
+@subtitle Cairo 2D graphics binding for GNU Guile
+@subtitle Version @value{VERSION}, @value{UPDATED-MONTH}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top Cairog
+
+Cairog exposes the @uref{https://www.cairographics.org/, Cairo} 2D
+graphics library to GNU Guile through the Foreign Function Interface,
+allowing you to draw vector graphics directly from Scheme.
+
+This manual is for Cairog version @value{VERSION}.
+
+@menu
+* Installation::        How to install Cairog.
+* Quick Start::         A minimal drawing example.
+* Core::                Library loading and version queries.
+* Surface::             Surface creation and PNG export.
+* Context::             Drawing context and path operations.
+* API Coverage::        Which Cairo API groups are available.
+@end menu
+@end ifnottex
+
+@include installation.texi
+@include quick-start.texi
+@include core.texi
+@include surface.texi
+@include context.texi
+@include api-coverage.texi
+
+@bye

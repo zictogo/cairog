@@ -1,8 +1,0 @@
-services:
-  docs:
-    build: .
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./docs:/app/docs
-      - ./zensical.toml:/app/zensical.toml

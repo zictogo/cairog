@@ -7,6 +7,7 @@
              (gnu packages gtk)
              (gnu packages pkg-config)
              (gnu packages autotools)
+             (gnu packages texinfo)
              ((guix licenses) #:prefix license:))
 
 (define %version
@@ -32,7 +33,7 @@
            (setenv "LD_LIBRARY_PATH"
                    (string-append (assoc-ref inputs "cairo") "/lib")))))))
   (inputs (list guile-3.0 cairo))
-  (native-inputs (list autoconf automake pkg-config))
+  (native-inputs (list autoconf automake pkg-config texinfo))
   (synopsis "Cairo 2D graphics binding for GNU Guile")
   (description
    "Cairog exposes the Cairo vector graphics library to GNU Guile \

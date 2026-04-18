@@ -1,0 +1,121 @@
+@node API Coverage
+@chapter API Coverage
+
+All available bindings are accessible via the single top-level module:
+
+@example
+(use-modules (cairog))
+@end example
+
+Full C API reference: @uref{https://www.cairographics.org/manual/}.
+
+@section Available
+
+@table @asis
+@item Core
+@uref{https://www.cairographics.org/manual/cairo-Version-Information.html,
+Version information}
+
+@item Surface
+@uref{https://www.cairographics.org/manual/cairo-Image-Surfaces.html,
+Image surfaces},
+@uref{https://www.cairographics.org/manual/cairo-PNG-Support.html,
+PNG support},
+@uref{https://www.cairographics.org/manual/cairo-cairo-surface-t.html,
+surface lifecycle} (create/destroy/status)
+
+@item Context
+@uref{https://www.cairographics.org/manual/cairo-cairo-t.html,
+Drawing context} (lifecycle, save/restore, source, operator, line
+width), paint/fill/stroke verbs,
+@uref{https://www.cairographics.org/manual/cairo-Paths.html,
+path construction} (move-to, line-to, rectangle, arc, close-path)
+@end table
+
+@section Not Yet Available
+
+@table @asis
+@item Transformations
+@code{cairo_matrix_t} — blocked on @code{cairo-matrix-t} struct binding.
+
+@item Patterns
+Solid, linear, radial, mesh, surface patterns — blocked on
+@code{cairo-pattern-t} opaque wrapper.
+
+@item Extended source
+@code{cairo_set_source_surface}, @code{cairo_set_source} — blocked on
+@code{cairo-pattern-t}.
+
+@item Clipping
+@code{cairo_clip}, @code{cairo_reset_clip} — context module extension.
+
+@item Masking
+@code{cairo_mask}, @code{cairo_mask_surface} — blocked on
+@code{cairo-pattern-t}.
+
+@item Groups
+@code{cairo_push_group}, @code{cairo_pop_group} — blocked on
+@code{cairo-pattern-t}.
+
+@item Curve paths
+@code{cairo_curve_to}, @code{cairo_rel_curve_to} — context module
+extension.
+
+@item Path query
+@code{cairo_copy_path}, @code{cairo_get_current_point} — blocked on
+@code{cairo-path-t} binding.
+
+@item Style query
+@code{cairo_get_line_width}, @code{cairo_get_operator}, etc. — context
+module extension.
+
+@item Dash
+@code{cairo_set_dash}, @code{cairo_get_dash} — context module
+extension.
+
+@item Fill rule / line cap / join
+@code{cairo_set_fill_rule}, @code{cairo_set_line_cap},
+@code{cairo_set_line_join} — context module extension.
+
+@item Antialiasing
+@code{cairo_set_antialias} — context module extension.
+
+@item Text / toy font
+@code{cairo_show_text}, @code{cairo_select_font_face},
+@code{cairo_set_font_size} — blocked on font-face and text-extents
+bindings.
+
+@item Glyph API
+@code{cairo_show_glyphs}, @code{cairo_glyph_extents} — blocked on
+@code{cairo-glyph-t} struct binding.
+
+@item Scaled font
+@code{cairo_scaled_font_t} — blocked on @code{cairo-scaled-font-t}
+opaque wrapper.
+
+@item Font options
+Hint style, subpixel order, colour mode — blocked on
+@code{cairo-font-options-t} opaque wrapper.
+
+@item Device
+@code{cairo_device_t} — blocked on @code{cairo-device-t} opaque
+wrapper.
+
+@item Region
+@code{cairo_region_t} — blocked on @code{cairo-region-t} opaque
+wrapper.
+
+@item Additional surface types
+PDF, PS, SVG, script, recording surfaces — separate surface modules.
+
+@item Stroke/fill extents
+@code{cairo_stroke_extents}, @code{cairo_fill_extents} — context module
+extension.
+
+@item Hit testing
+@code{cairo_in_stroke}, @code{cairo_in_fill} — context module
+extension.
+
+@item User data
+@code{cairo_set_user_data} — context module extension.
+@end table

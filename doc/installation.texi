@@ -1,0 +1,33 @@
+@node Installation
+@chapter Installation
+
+@section Requirements
+
+@itemize
+@item @uref{https://guix.gnu.org/, GNU Guix}
+@end itemize
+
+@section Installing with Guix
+
+@example
+guix package -f guix.scm
+@end example
+
+After installation the modules are available with no extra configuration:
+
+@example
+(use-modules (cairog))
+@end example
+
+@section Development shell
+
+@example
+guix shell -f guix.scm
+./bootstrap && ./configure && make
+@end example
+
+@section Running the tests
+
+@example
+make check
+@end example

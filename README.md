@@ -23,10 +23,10 @@ make check
 
 ## Documentation
 
-Available at <https://zictogo.github.io/cairog/>.
-
-To browse locally:
+After installation, the manual is available in Info:
 
 ```bash
-docker compose up -d   # served at http://localhost:8080
+info cairog
 ```
+
+Also available at <https://zictogo.github.io/cairog/>.
