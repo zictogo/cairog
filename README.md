@@ -11,8 +11,9 @@ guix package -f guix.scm
 ## Development
 
 ```bash
-guix shell -f guix.scm   # shell with all dependencies
-./bootstrap && ./configure && make   # build in-tree
+guix shell -D -f guix.scm               # development shell with all build inputs
+./bootstrap && ./configure && make       # build in-tree
+info -f doc/cairog.info                  # browse the manual without installing
 ```
 
 ## Tests

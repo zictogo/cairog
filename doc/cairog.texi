@@ -1,11 +1,10 @@
 \input texinfo
 @c -*- texinfo -*-
 @setfilename cairog.info
+@include version.texi
 @settitle Cairog @value{VERSION}
 @documentencoding UTF-8
 @documentlanguage en
-
-@include version.texi
 
 @copying
 Copyright @copyright{} 2026 the Cairog authors.

@@ -1,8 +1,4 @@
 *~
-*.ss~
-*.ss#*
-.#*.ss
-
 *.scm~
 *.scm#*
 .#*.scm
@@ -16,19 +12,22 @@
 /configure
 /config.status
 /config.log
-/INSTALL
 /aclocal.m4
-/stamp-h1
 /test-suite.log
 /pre-inst-env
 build-aux/
 autom4te.cache/
 
-# Compiled Guile objects (build artefacts)
+# Compiled Guile objects
 *.go
 
 # Texinfo generated files
 doc/version.texi
+doc/.dirstamp
+doc/stamp-vti
 doc/*.info
 doc/*.html
 doc/*.pdf
+
+# Cairo C header (local copy for FFI reference, not part of the source)
+cairo.h

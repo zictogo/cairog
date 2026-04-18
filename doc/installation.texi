@@ -22,7 +22,7 @@ After installation the modules are available with no extra configuration:
 @section Development shell
 
 @example
-guix shell -f guix.scm
+guix shell -D -f guix.scm
 ./bootstrap && ./configure && make
 @end example
 
